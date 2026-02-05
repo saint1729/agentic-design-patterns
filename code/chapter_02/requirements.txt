@@ -1,5 +1,7 @@
-python-dotenv
 langchain
-langchain-community
-langchain-openai
 langgraph
+google-cloud-aiplatform
+langchain-google-genai
+google-adk
+deprecated
+pydantic
