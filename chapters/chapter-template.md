@@ -16,17 +16,9 @@ A short summary of the chapter.
 
 - 
 
-## Concepts
-
-Explain important concepts and patterns from the chapter.
-
 ## Code Examples
 
 Link to code under `code/chapter_XX/` and include small runnable snippets.
-
-## Notes
-
-Your detailed notes, commentary, and questions.
 
 ## References
 
