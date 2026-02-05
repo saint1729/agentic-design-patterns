@@ -143,6 +143,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+# Ignore per-chapter code virtual environments
+code/**/.venv/
 
 # Spyder project settings
 .spyderproject
