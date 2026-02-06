@@ -6,7 +6,7 @@ date: 2026-02-04
 tags: [routing]
 ---
 
-# Routing Pattern
+# Routing
 
 Routing introduces conditional logic into an agent's operational framework, enabling a shift from a fixed execution path to a model where the agent dynamically evaluates specific criteria to select from a set of possible subsequent actions. This allows for more flexible and context-aware system behavior.
 
@@ -43,4 +43,3 @@ The implementation of routing enables a system to move beyond deterministic sequ
 ## Code Examples
 
 Related code is present under `code/chapter_02/`.
-
