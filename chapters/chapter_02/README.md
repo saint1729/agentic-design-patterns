@@ -1,4 +1,4 @@
-Chapter 02: Routing — lesson placeholder
+Chapter 02: Routing
 
 This folder will contain the lesson notes for Chapter 2: Routing pattern.
 Add `chapters/chapter_02/routing.md` with your notes following the chapter template.

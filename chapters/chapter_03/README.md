@@ -1,4 +1,4 @@
-Chapter 03: Parallelization — lesson placeholder
+Chapter 03: Parallelization
 
 This folder will contain notes and writeups for Chapter 3: Parallelization pattern.
 
