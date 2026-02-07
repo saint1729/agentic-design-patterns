@@ -1,2 +1,4 @@
 langchain
-python-dotenv
+langchain-community
+langchain-openai
+google-adk

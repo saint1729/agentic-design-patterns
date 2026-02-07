@@ -39,7 +39,3 @@ Parallelization is a powerful pattern for optimizing agent performance across va
 - In LangChain Expression Language (LCEL), RunnableParallel is a key construct for running multiple runnables side-by-side.
 - Google ADK can facilitate parallel execution through LLM-Driven Delegation, where a Coordinator agent's LLM identifies independent sub-tasks and triggers their concurrent handling by specialized sub-agents.
 - Parallelization helps reduce overall latency and makes agentic systems more responsive for complex tasks.
-
-## Code Examples
-
-Related code is present under `code/chapter_03/`.

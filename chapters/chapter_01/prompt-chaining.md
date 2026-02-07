@@ -81,8 +81,3 @@ output.
 - Each step in a chain involves calling an LLM or processing logic, using the output of the previous step as input.
 - This pattern improves the reliability and manageability of complex interactions with language models.
 - Frameworks like LangChain/LangGraph, and Google ADK provide robust tools to define, manage, and execute these multi-step sequences.
-
-
-## Code Examples
-
-Related code is present under `code/chapter_01/`.
