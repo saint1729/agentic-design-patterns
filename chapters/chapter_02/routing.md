@@ -39,7 +39,3 @@ The implementation of routing enables a system to move beyond deterministic sequ
 - It allows agents to handle diverse inputs and adapt their behavior, moving beyond linear execution.
 - Routing logic can be implemented using LLMs, rule-based systems, or embedding similarity.
 - Framework like LangGraph and Google ADK provide structured ways to define and manage routing within agent workflows, albeit with different architectural approches.
-
-## Code Examples
-
-Related code is present under `code/chapter_02/`.
