@@ -1,3 +1,8 @@
 langchain
 python-dotenv
 requests
+langchain-google-genai
+nest_asyncio
+crewai
+langchain-openai
+google-adk

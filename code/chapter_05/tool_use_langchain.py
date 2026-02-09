@@ -1,80 +1,77 @@
-"""Starter scaffold for the Tool Use pattern.
-
-This example shows how to structure a loop where the model decides to call
-an external tool (simulated here) and then uses the tool output to produce
-a final answer. The tool is mocked so the script is runnable without keys.
-Replace `mock_tool_call` with real tool invocations (search API, calculator,
-or custom service) as needed.
-"""
+import os
 import asyncio
-import json
-from typing import Dict, Any
-
+import nest_asyncio
 from dotenv import load_dotenv
 
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_core.tools import tool as langchain_tool
+from langchain.agents import create_agent
 
 load_dotenv()
 
+MODEL_ID = os.getenv("GOOGLE_MODEL_ID")
 
-async def mock_tool_call(tool_name: str, input_data: str) -> Dict[str, Any]:
-    """Simulate external tool behavior.
+llm = ChatGoogleGenerativeAI(model=MODEL_ID, temperature=0)
 
-    Supported mock tools:
-    - `web_search`: returns fake search hits
-    - `calculator`: evaluates simple arithmetic expressions (very limited)
+
+@langchain_tool
+def search_information(query: str) -> str:
     """
-    await asyncio.sleep(0.1)
-    if tool_name == "web_search":
-        return {
-            "results": [
-                {"title": "Result A", "snippet": f"Found about {input_data}."},
-                {"title": "Result B", "snippet": f"More on {input_data}."},
-            ]
-        }
-    if tool_name == "calculator":
-        try:
-            # WARNING: eval used only for the toy mock; do NOT use eval on untrusted input.
-            value = eval(input_data, {"__builtins__": {}})
-            return {"value": value}
-        except Exception as e:
-            return {"error": str(e)}
-    return {"error": "unknown tool"}
-
-
-def model_decides_tool(prompt: str) -> Dict[str, str]:
-    """Simple decision function: which tool to call, and what input to send.
-
-    Replace with an LLM call that outputs a JSON decision in real usage.
+    Provides factual information on a given topic (simulated).
     """
-    if "calculate" in prompt.lower():
-        return {"tool": "calculator", "input": "2 + 2 * 3"}
-    return {"tool": "web_search", "input": prompt}
+    print(f"\n--- 🛠️ Tool Called: search_information with query: '{query}' ---")
+
+    simulated_results = {
+        "weather in london": "The weather in London is currently cloudy with a temperature of 15°C.",
+        "capital of france": "The capital of France is Paris.",
+        "population of earth": "The estimated population of Earth is around 8 billion people.",
+        "tallest mountain": "Mount Everest is the tallest mountain above sea level.",
+        "default": (
+            f"Simulated search result for '{query}': No specific information found, "
+            "but the topic seems interesting."
+        ),
+    }
+
+    result = simulated_results.get(query.lower(), simulated_results["default"])
+    print(f"--- TOOL RESULT: {result} ---")
+    return result
 
 
-async def tool_use_pipeline(user_prompt: str) -> str:
-    decision = model_decides_tool(user_prompt)
-    print("Decision:", decision)
-    tool_out = await mock_tool_call(decision["tool"], decision["input"])
-    print("Tool output:", json.dumps(tool_out, indent=2))
-    # Simple synthesis step combining prompt + tool output
-    if decision["tool"] == "calculator" and "value" in tool_out:
-        return f"Answer (calculator): {tool_out['value']}"
-    if decision["tool"] == "web_search" and "results" in tool_out:
-        summaries = ", ".join(r["snippet"] for r in tool_out["results"])[:200]
-        return f"Answer (search-based): {summaries}"
-    return "Could not produce an answer"
+tools = [search_information]
 
+# New-style agent (LangChain v1)
+agent = create_agent(
+    model=llm,
+    tools=tools,
+    system_prompt="You are a helpful assistant. Use tools when needed.",
+)
+
+async def run_agent(query: str):
+    print(f"\n--- 🏃 Running Agent with Query: '{query}' ---")
+
+    result = await agent.ainvoke(
+        {"messages": [{"role": "user", "content": query}]}
+    )
+
+    messages = result.get("messages", [])
+    if not messages:
+        print("\n🛑 No messages returned.")
+        print(result)
+        return
+
+    last = messages[-1]
+    print("\n--- ✅ Final Agent Response ---")
+    if hasattr(last, "content"):
+        print(last.content)
+    else:
+        print(last.get("content", ""))
 
 async def main():
-    prompts = [
-        "Who won the world series in 2020?",
-        "Please calculate 2+2*3 for me.",
-    ]
-    for p in prompts:
-        print("\nPrompt:", p)
-        out = await tool_use_pipeline(p)
-        print("Final answer:", out)
+    await asyncio.gather(
+        run_agent("What is the capital of France?"),
+        run_agent("What's the weather like in London?"),
+        run_agent("Tell me something about dogs."),
+    )
 
-
-if __name__ == "__main__":
-    asyncio.run(main())
+nest_asyncio.apply()
+asyncio.run(main())
