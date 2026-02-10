@@ -3,7 +3,7 @@ chapter: 05
 title: Tool Use
 author: Sai Nikhil
 date: 2026-02-05
-tags: [tool_use]
+tags: [tool use, tools, function calling]
 ---
 
 # Tool Use
