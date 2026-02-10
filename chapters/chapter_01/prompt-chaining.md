@@ -3,7 +3,7 @@ chapter: 01
 title: Prompt Chaining
 author: Sai Nikhil
 date: 2026-02-03
-tags: [prompt-chaining]
+tags: [prompt chaining]
 ---
 
 # Prompt Chaining

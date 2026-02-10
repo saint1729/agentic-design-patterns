@@ -1,2 +1,4 @@
 langchain
-python-dotenv
+langchain-openai
+crewai
+openai>=1.0.0

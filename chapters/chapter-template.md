@@ -1,5 +1,5 @@
 ---
-chapter: 01
+chapter: XX
 title: Chapter Title
 author: Your Name
 date: 2026-02-03
