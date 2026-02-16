@@ -5,8 +5,11 @@ This folder will contain runnable examples for the Routing pattern.
 Setup (from repo root):
 
 ```bash
-bash code/setup_venv.sh chapter_02
-source code/chapter_02/.venv/bin/activate
+cd code
+./setup_venv.sh chapter_02
+source chapter_02/.venv/bin/activate
+
+# Copy example env and update secrets
 cp code/.env.example code/chapter_02/.env
 # edit code/chapter_02/.env with your secrets
 ```

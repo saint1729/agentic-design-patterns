@@ -1,7 +1,9 @@
 langchain
-requests
-langchain-google-genai
-nest_asyncio
 crewai
+langchain-google-genai
+google-cloud-storage >= 3.0.0
+
+requests
+nest_asyncio
 langchain-openai
 google-adk

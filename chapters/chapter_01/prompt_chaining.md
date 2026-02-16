@@ -8,7 +8,9 @@ tags: [prompt chaining]
 
 # Prompt Chaining
 
-The core idea is to break down the original, dainting pronlem into a sequence of smaller, more manageable sub-problems. Each sub-problem is addressed individually through a specifically designed prompt, and the output generated from one prompt is strategically fed as input into the subsequent prompt in the chain. Here are several practical applications and use cases:
+The core idea is to break down the original, daunting problem into a sequence of smaller, more manageable sub-problems. Each sub-problem is addressed individually through a specifically designed prompt, and the output generated from one prompt is strategically fed as input into the subsequent prompt in the chain. 
+
+## Practical Applications & Use Cases:
 
 1. **Information Processing Worflows:** Many taks involve procesing raw information through multiple transformations. For instance, summarizing a document, extracting key entities, and then using those entities to query a database or generate a report. A prompt chain could look like:
 
@@ -61,8 +63,7 @@ The core idea is to break down the original, dainting pronlem into a sequence of
 
 - Prompt 1: Extract and comprehend the text from the user's image request.
 - Prompt 2: Link the extracted image text with its corresponding labels.
-- Prompt 3: Interpret the gathered information using a table to determine the required
-output.
+- Prompt 3: Interpret the gathered information using a table to determine the required output.
 
 
 
